@@ -7,7 +7,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://devnest-zeta.vercel.app", 
+  methods: ["GET"], 
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+
 
 app.get("/api/repos", async (req, res) => {
   const { q, page = 1 } = req.query;
